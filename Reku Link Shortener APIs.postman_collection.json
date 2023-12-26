@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "766fbc34-b038-4674-b2f6-c2c69a8de28e",
+		"name": "Reku Link Shortener APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11950836"
+	},
+	"item": [
+		{
+			"name": "Add Link",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"https://google.com\",\n    \"count\": 0,\n    \"short\": \"googlez\",\n    \"expire\": \"2023-12-26T11:10:53.891449+07:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/url",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"url"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Url Already Exist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\": \"https://google.com\",\n    \"count\": 0,\n    \"short\": \"google\",\n    \"expire\": \"2023-12-26T11:10:53.891449+07:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1323/url",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"url"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Dec 2023 04:34:26 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "37"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"short url already exists\"\n}"
+				},
+				{
+					"name": "Success Add Url",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\": \"https://googlel.com\",\n    \"count\": 0,\n    \"short\": \"googlel\",\n    \"expire\": \"2023-12-26T11:10:53.891449+07:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1323/url",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"url"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Dec 2023 04:39:28 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "329"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"url\": \"https://google.com\",\n        \"count\": 1,\n        \"short\": \"google\",\n        \"expire\": \"2023-12-26T11:38:02.329424+07:00\"\n    },\n    {\n        \"id\": 2,\n        \"url\": \"https://facebook.com\",\n        \"count\": 0,\n        \"short\": \"facebook\",\n        \"expire\": \"2023-12-26T11:38:02.329424+07:00\"\n    },\n    {\n        \"id\": 3,\n        \"url\": \"https://googlel.com\",\n        \"count\": 0,\n        \"short\": \"googlel\",\n        \"expire\": \"2023-12-26T11:10:53.891449+07:00\"\n    }\n]"
+				},
+				{
+					"name": "Required Fields",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1323/url",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"url"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Dec 2023 04:39:56 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"url and short are required\"\n}"
+				},
+				{
+					"name": "Url Not Valid",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\": \"https://googlel.com\",\n    \"count\": 0,\n    \"short\": \"googlez\",\n    \"expire\": \"2023-12-26T11:10:53.891449+07:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1323/url",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1323",
+							"path": [
+								"url"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Dec 2023 04:44:12 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"url is not valid\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Link",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"link\":\"https://google.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/urls?count=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"urls"
+					],
+					"query": [
+						{
+							"key": "count",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Redirect",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"link\":\"https://google.com\",\n    \"custom_short_link\":\"googleshortener\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1323/fb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1323",
+					"path": [
+						"fb"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
